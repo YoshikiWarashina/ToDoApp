@@ -12,18 +12,27 @@
 <h1>
     Edit Todo Page
 </h1>
+<?php
+//connect to the database
+    require_once 'model.php';
+    $model = new Model();
+
+    $id = $_GET['id'];
+    $value = $model->getDataById($id);
+?>
+
 <form method="post">
     <div style="margin: 10px">
         <label for="title">タイトル：</label>
-        <input id="title" type="text">
+        <input id="title" type="text" name="title" value="<?php print $value['title']?>">
     </div>
     <div style="margin: 10px">
         <label for="content">内容：</label>
-        <textarea id="content" name="contents" rows="8" cols="40"></textarea>
+        <textarea id="content" name="content" rows="8" cols="40"><?php print $value['content']?></textarea>
     </div>
     <input type="submit" name="post" value="編集する">
 </form>
-<form action="index.html">
+<form action="index.php">
     <button type="submit" name="back">戻る</button>
 </form>
 </body>

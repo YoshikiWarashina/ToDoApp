@@ -8,29 +8,56 @@ class Model{
         $this->conn = $this->getConnection();
     }
 
-    //delete data from database
-    public function deleteData($todoId){
-        $sql = "DELETE FROM toDoTable WHERE id = ?";
+    public function addData($title, $content){
+        $sql = "INSERT INTO todos VALUES (default,?,?,default, default)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("i", $todoId);
+        $stmt->bind_param("ss", $title, $content);
         $stmt->execute();
     }
 
-    //display all the data from database
+    //delete data from database
+    public function deleteData($id){
+        $sql = "DELETE FROM todos WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+    }
+
+    //get all the data from database
     public function getData() {
-        $sql = "SELECT * FROM toDoTable";
+        $sql = "SELECT * FROM todos";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();
 
-        $rows = array();
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $rows[] = $row;
-            }
-        }
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
         return $rows;
     }
+
+    //get data based on id from database
+    public function getDataById($id){
+        $sql = "SELECT * FROM todos WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
+        return $rows;
+    }
+    
+    //edit the selected data
+    public function editData($id, $title, $content){
+        $sql = "UPDATE todos SET title = ?, content = ?, updated_at = NOW() WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("ssi", $title, $content, $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result;
+    }
+
+    // create a method for xss prevention
 }
 
     

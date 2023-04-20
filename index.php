@@ -11,7 +11,12 @@
 <h1>
     ToDo List Page
 </h1>
-<form action="create.php">
+<?php
+    //connect to database
+    require_once 'model.php';
+    $model = new Model();
+?>
+<form method = "post" action="create.php">
     <button type="submit" style="padding: 10px;font-size: 16px;margin-bottom: 10px">New Todo</button>
 </form>
 <table border="1">
@@ -25,12 +30,8 @@
         <th>編集</th>
         <th>削除</th>
     </tr>
+
 <?php
-
-    //Display data
-    require_once 'model.php';
-    $model = new Model();
-
     foreach ($model->getData() as $value) {
 ?>
     <tr>
@@ -41,7 +42,7 @@
         <td><?php echo $value['updated_at']?></td>
         <td>
             <form method="post" action="edit.php">
-                <button type="submit" style="padding: 10px;font-size: 16px;" name="id" value="<?php print $value['id']?>">編集する</button>
+                <button type="submit" style="padding: 10px;font-size: 16px;" name="id">編集する</button>
             </form>
         </td>
         <!--Delete Data-->
