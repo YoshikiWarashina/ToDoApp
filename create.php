@@ -11,12 +11,8 @@
 <h1>
     Post New ToDo Page
 </h1>
-<?php
-//connect to the database
-    require_once 'model.php';
-    $model = new Model();
-?>
-<form method="post" action = "create.php" onsubmit="return confirm('追加しますか？');">
+
+<form method="post" action = "controller.php" onsubmit="return confirm('追加しますか？');">
     <input type="hidden" name="request" value="create">
     <div style="margin: 10px">
         <label for="title">タイトル：</label>
@@ -33,17 +29,5 @@
     <button type="submit" name="back">戻る</button>
 </form>
 
-<?php
-// post request is sent and request is create -> add data to the database
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['request'] === 'create') {
-        $title = $_POST['title'];
-        $content = $_POST['content'];
-
-        $model->addData($title, $content);
-    
-        header("Location: index.php");
-        exit();
-    }
-?>
 </body>
 </html>

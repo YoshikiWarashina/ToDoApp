@@ -4,15 +4,15 @@ trait Database{
     private $username = "root";
     private $password = "";
     private $db_name = "todoDB";
-    private $conn;
+    private $connection;
 
     //connecting to the database
     public function getConnection() {
-        $this->conn = new mysqli($this->host, $this->username, $this->password, $this->db_name);
+        $this->connection = new mysqli($this->host, $this->username, $this->password, $this->db_name);
 
-        if ($this->conn->connect_error) {
-            echo "Error: " . $this->conn->error;
+        if ($this->connection->connect_error) {
+            echo "Error: " . $this->connection->error;
         }
-        return $this->conn;
+        return $this->connection;
     }
 }

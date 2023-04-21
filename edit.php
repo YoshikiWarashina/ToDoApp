@@ -14,17 +14,18 @@
 </h1>
 <?php
 //connect to the database
-    require_once 'model.php';
+    require_once 'controller.php';
     $model = new Model();
 
-    $id = $_GET['id'];
+    $id = $_POST['id'];
     $value = $model->getDataById($id);
 ?>
 
-<form method="post">
+<form method="post" action = "model.php">
+<input type="hidden" name="request" value="edit">
     <div style="margin: 10px">
         <label for="title">タイトル：</label>
-        <input id="title" type="text" name="title" value="<?php print $value['title']?>">
+        <input id="title" type="text" name="title" value="<?php echo $value['title']?>">
     </div>
     <div style="margin: 10px">
         <label for="content">内容：</label>
