@@ -21,16 +21,17 @@
     $value = $model->getDataById($id);
 ?>
 
-<form method="post" action = "model.php">
-<input type="hidden" name="request" value="edit">
+<form method="post" action = "controller.php" onsubmit="return confirm('上書きしますか？');">
     <div style="margin: 10px">
         <label for="title">タイトル：</label>
         <input id="title" type="text" name="title" value="<?php echo $value['title']?>">
     </div>
     <div style="margin: 10px">
         <label for="content">内容：</label>
-        <textarea id="content" name="content" rows="8" cols="40"><?php print $value['content']?></textarea>
+        <textarea id="content" name="content" rows="8" cols="40"><?php echo $value['content']?></textarea>
     </div>
+    <input name="id" type="hidden" value="<?php echo $id ?>">
+    <input name="request" type="hidden" value="edit">
     <input type="submit" name="post" value="編集する">
 </form>
 <form action="index.php">

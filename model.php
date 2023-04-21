@@ -42,8 +42,8 @@ class Model{
         $stmt->execute();
         $result = $stmt->get_result();
 
-        $rows = $result->fetch_all(MYSQLI_ASSOC);
-        return $rows;
+        $row = $result->fetch_assoc();
+        return $row;
     }
     
     //edit the selected data
@@ -53,9 +53,9 @@ class Model{
         $stmt = $this->connection->prepare($sql);
         $stmt->bind_param("ssi", $title, $content, $id);
         $stmt->execute();
-        $result = $stmt->get_result();
+        $row = $stmt->get_result();
 
-        return $result;
+        return $row;
     }
 
     public function strValidation($title, $content){

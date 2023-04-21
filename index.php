@@ -23,8 +23,8 @@
 <form style = "margin-bottom: 10px" method="post" action="controller.php">
     <select name="category">
         <option value="">並び替えオプション</option>
-        <option value="1">作成日時昇順</option>
-        <option value="2">編集日時昇順</option>
+        <option value="ascCreate">作成日時昇順</option>
+        <option value="ascUpdate">編集日時昇順</option>
     </select>
     <button type="submit">決定</button>
 </form>

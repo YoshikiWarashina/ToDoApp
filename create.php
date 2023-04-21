@@ -13,7 +13,6 @@
 </h1>
 
 <form method="post" action = "controller.php" onsubmit="return confirm('追加しますか？');">
-    <input type="hidden" name="request" value="create">
     <div style="margin: 10px">
         <label for="title">タイトル：</label>
         <input id="title" type="text" name="title">

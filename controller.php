@@ -22,7 +22,7 @@ if ($action === 'delete') {
         $model->strValidation($title, $content);
         $model->addData(xssPrevention($title), xssPrevention($content));
     
-         header("Location: index.php");
+        header("Location: index.php");
     }catch(Exception $e){
         echo "エラーが発生しました：" . $e->getMessage();
     }
@@ -44,13 +44,6 @@ if ($action === 'delete') {
         echo "エラーが発生しました：" . $e->getMessage();
     }
 
-}else if ($action === 'edit_id'){
-
-    $id = $_POST['edit_id'];
-
-    $value = $model->getDataById($id);
-    
-    header("Location: edit.php");
 }
 
 
@@ -59,7 +52,8 @@ function xssPrevention($data){
 }
 
 
-//call a function that make an order 
+//call a function that make an order
+
 
     
 ?>
