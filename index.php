@@ -11,23 +11,24 @@
         <h1>
             ToDo List Page
         </h1>
-<?php
-    //connect to database
-    require_once 'controller.php';
-    $model = new Model();
-?>
 
 <form method = "post" action="create.php">
     <button type="submit" style="padding: 10px;font-size: 16px;margin-bottom: 10px">New Todo</button>
 </form>
 <form style = "margin-bottom: 10px" method="post" action="controller.php">
-    <select name="category">
-        <option value="">並び替えオプション</option>
+    <select name="request">
         <option value="ascCreate">作成日時昇順</option>
         <option value="ascUpdate">編集日時昇順</option>
     </select>
     <button type="submit">決定</button>
 </form>
+<?php
+    //
+    //connect to database
+    require_once 'controller.php';
+    $controller = new Controller();
+?>
+
 <table border="1">
     <colgroup span="4"></colgroup>
     <tr>
@@ -41,7 +42,7 @@
     </tr>
 
 <?php
-    foreach ($model->getData() as $value) {
+    foreach ($controller->getData() as $value) {
 ?>
     <tr>
         <td><?php echo $value['id'];?></td>
@@ -53,7 +54,6 @@
             <form method="post" action="edit.php">
                 <button type="submit" style="padding: 10px;font-size: 16px;">編集する</button>
                 <input name="id" type="hidden" value="<?php print $value['id'];?>">
-                <input name="request" type="hidden" value="edit_id">
             </form>
         </td>
         <!--Delete Data-->

@@ -1,5 +1,5 @@
 <?php
-trait Database{
+trait ConnectDatabase{
     private $host = "localhost";
     private $username = "root";
     private $password = "";

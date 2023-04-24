@@ -1,7 +1,7 @@
 <?php
 require_once 'connectDB.php';
 class Model{
-    use Database;
+    use ConnectDatabase;
 
     public function __construct(){
         $this->getConnection();
@@ -64,26 +64,21 @@ class Model{
 
         if(empty($title) || empty($content)){
             throw new Exception("タイトルと内容は入力必須です");
-        }else if(mb_strlen($title) > 10 || mb_strlen($content) > 20){
-            throw new Exception("タイトル１０文字以内、内容２０文字以内で入力してください");
+        }else if(mb_strlen($title) > 30){
+            throw new Exception("タイトル30文字以内で入力してください");
         }
     }
 }
 
-abstract class SortStrategy{
-    use Database;
 
-    public function __construct(){
-        $this->getConnection();
-    }
-
-    abstract public function getData();
+//別ファイルに移動させる
+interface ViewStrategy{
+    public function getData();
 }
 
-class AscSortByCreated extends SortStrategy{
+class AscendByCreated implements ViewStrategy{
 
-    use Database;
-
+    use ConnectDatabase;
     // ascending order based on created_at
     public function getData(){
         $sql = "SELECT * FROM todos order by created_at asc";
@@ -94,11 +89,12 @@ class AscSortByCreated extends SortStrategy{
         $rows = $result->fetch_all(MYSQLI_ASSOC);
         return $rows;
     }
+
 }
 
-class AscSortByUpdated extends SortStrategy{
+class AscendtByUpdated implements ViewStrategy{
 
-    use Database;
+    use ConnectDatabase;
 
     //ascending order based on updated_at
     public function getData(){
@@ -115,7 +111,7 @@ class AscSortByUpdated extends SortStrategy{
 class Sort{
     private $sortStrategy;
 
-    public function __construct(SortStrategy $sortStrategy){
+    public function __construct(ViewStrategy $sortStrategy){
         $this->sortStrategy = $sortStrategy;
     }
 
