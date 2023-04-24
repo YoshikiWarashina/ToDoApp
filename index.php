@@ -26,7 +26,7 @@
     //
     //connect to database
     require_once 'controller.php';
-    $controller = new Controller();
+    $model = new Model();
 ?>
 
 <table border="1">
@@ -42,7 +42,7 @@
     </tr>
 
 <?php
-    foreach ($controller->getData() as $value) {
+    foreach ($model->getData() as $value) {
 ?>
     <tr>
         <td><?php echo $value['id'];?></td>
