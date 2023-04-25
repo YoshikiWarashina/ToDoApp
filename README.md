@@ -6,6 +6,10 @@
 ### video 
 
 
+https://user-images.githubusercontent.com/129946179/234172700-675d676e-3383-480f-9d1f-f794e6540bb6.mp4
+
+
+
 ### 未実装項目
 * Strategy Patternを使った並び替え機能 -> ゴリ押しで機能自体は書けている。
 * controller.phpをクラスを使っての書きかえ
