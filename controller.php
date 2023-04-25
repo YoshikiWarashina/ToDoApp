@@ -48,19 +48,16 @@ if ($action === 'delete') {
 }
 
 
+
+
+
 function xssPrevention($data){
     return htmlspecialchars($data, ENT_QUOTES, 'utf-8');
 }
 
 
-//call a function that make an order
-if($action == 'ascCreate'){
-}
-
-if($action == 'ascUpdate'){
-    
-}
 
 
     
 ?>
+

@@ -20,7 +20,7 @@ class AscendByCreated implements ViewStrategy{
 
 }
 
-class AscendtByUpdated implements ViewStrategy{
+class AscendByUpdated implements ViewStrategy{
 
     use ConnectDatabase;
 
@@ -43,7 +43,7 @@ class Sort{
         $this->sortStrategy = $sortStrategy;
     }
 
-    public function getData(){
+    public function getSortedData(){
         return $this->sortStrategy->getData();
     }
 }

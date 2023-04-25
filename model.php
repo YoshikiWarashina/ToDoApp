@@ -2,7 +2,7 @@
 require_once 'connectDB.php';
 class Model{
     use ConnectDatabase;
-    private $sortStrategy;
+    private $viewStrategy;
 
     public function __construct(){
         $this->getConnection();
@@ -35,6 +35,29 @@ class Model{
         return $rows;
     }
 
+    //ascending order based on created_at
+    public function ascByCreatedAt(){
+        $sql = "SELECT * FROM todos ORDER BY created_at asc";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
+        return $rows;
+    }
+
+    //ascending order based on updated_at
+    public function ascByUpdatedAt(){
+        $sql = "SELECT * FROM todos ORDER BY updated_at asc";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
+        return $rows;
+        
+    }
+
     //get data based on id from database
     public function getDataById($id){
         $sql = "SELECT title, content FROM todos WHERE id = ?";
@@ -57,14 +80,6 @@ class Model{
         $row = $stmt->get_result();
 
         return $row;
-    }
-
-    public function ascByCreatedAt(ViewStrategy $sortStrategy){
-        return $this->sortStrategy->getData();
-    }
-
-    public function ascByUpdatedAt(ViewStrategy $viewStrategy){
-        return $this->sortStrategy->getData();
     }
 
     public function strValidation($title, $content){
