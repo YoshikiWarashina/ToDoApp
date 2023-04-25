@@ -1,7 +1,7 @@
 # ToDoApp
 
 ## This is a very first project in PHP
-
+Basic CRUD operation plus reordering functions, based upon created and updated time
 ## video 
 ### 新規作成
 
@@ -31,5 +31,5 @@ https://user-images.githubusercontent.com/129946179/234174391-b9e899e3-7058-4e2a
 
 ### Not implemented functions
 * Ordering functions, applying Strategy Pattern
-* writing codes in controller.php, applying an controller class
+* writing codes in controller.php, applying a controller class
 
